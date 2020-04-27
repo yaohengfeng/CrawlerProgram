@@ -1,10 +1,8 @@
 package com.yhf.service;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -41,7 +39,7 @@ public class Crawler {
 
             if (isInterestingLink(link)) {
                 Document doc = httpGetAndParseHtml(link);
-                doc.select("a").stream().map(aTags->aTags.attr("href")).forEach(linkpool::add);
+                doc.select("a").stream().map(aTags -> aTags.attr("href")).forEach(linkpool::add);
                 storeIntoDatabaseIfItIsNewPage(doc);
                 processedLinks.add(link);
             }
