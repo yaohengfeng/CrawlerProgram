@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--配置properties-->
+    <properties resource="jdbcConfig.properties"/>
+
+    <!--配置别名-->
+    <typeAliases>
+        <!--package指定相应的包，即类名为别名-->
+        <package name="com.yhf.domian"/>
+    </typeAliases>
+
+    <!--配置环境-->
+    <environments default="post">
+        <!--配置mysql的环境-->
+        <environment id="mysql">
+            <!--配置事务的类型-->
+            <transactionManager type="JDBC"/>
+            <!--配置连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--package 是用于指定dao接口所在的包，当指定以后就不用写mapper以及resource或者class-->
+        <package name="com.yhf.dao"/>
+    </mappers>
+
+</configuration>
